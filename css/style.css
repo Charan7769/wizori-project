@@ -1,0 +1,142 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7f5;
+    color: #222;
+}
+
+.header {
+    background: #166534;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.header h1 {
+    margin-bottom: 8px;
+}
+
+.container {
+    max-width: 750px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+.summary-card {
+    background: #dcfce7;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.summary-card h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.summary-card h1 {
+    color: #166534;
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.summary-card p {
+    color: #555;
+}
+
+.expense-form-card,
+.expense-history {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.expense-form-card h2,
+.expense-history h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    background: #166534;
+    color: white;
+    font-size: 16px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #14532d;
+}
+
+.expense-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.expense-details p {
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.expense-amount {
+    font-weight: bold;
+    color: #166534;
+}
+
+.empty-message {
+    color: #888;
+    text-align: center;
+    padding: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: 20px auto;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+}
