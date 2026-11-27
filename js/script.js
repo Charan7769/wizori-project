@@ -19,6 +19,11 @@ const currencyFormatter = new Intl.NumberFormat("en-IN", {
     currency: "INR"
 });
 
+// Format a number as Indian currency
+function formatCurrency(amount) {
+    return currencyFormatter.format(amount);
+}
+
 // Load saved expenses safely
 function loadExpenses() {
     try {
@@ -57,58 +62,68 @@ function saveExpenses() {
         return false;
     }
 }
-
 // Display expenses and calculate total
 function renderExpenses() {
-
     expenseList.innerHTML = "";
 
     let total = 0;
 
     if (expenses.length === 0) {
-        const emptyMessage = document.createElement("p");
-        emptyMessage.className = "empty-message";
-        emptyMessage.textContent = "No expenses added yet.";
-
-        expenseList.appendChild(emptyMessage);
+        expenseList.innerHTML =
+            '<p class="empty-message">No expenses added yet.</p>';
     }
 
-    expenses.forEach(expense => {
-
+    expenses.forEach((expense, index) => {
         total += expense.amount;
 
         const expenseItem = document.createElement("div");
         expenseItem.className = "expense-item";
 
-        const details = document.createElement("div");
-        details.className = "expense-details";
+        const expenseDetails = document.createElement("div");
+        expenseDetails.className = "expense-details";
 
-        const title = document.createElement("h3");
-        title.textContent = expense.description;
+        const description = document.createElement("strong");
+        description.textContent = expense.description;
 
-        const category = document.createElement("p");
+        const category = document.createElement("small");
         category.textContent = expense.category;
 
-        const price = document.createElement("span");
-        price.className = "expense-amount";
-        price.textContent = currencyFormatter.format(expense.amount);
+        expenseDetails.appendChild(description);
+        expenseDetails.appendChild(category);
 
-        details.appendChild(title);
-        details.appendChild(category);
+        const amount = document.createElement("span");
+        amount.className = "expense-amount";
+        amount.textContent = formatCurrency(expense.amount);
 
-        expenseItem.appendChild(details);
-        expenseItem.appendChild(price);
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.className = "delete-btn";
+        deleteButton.textContent = "Delete";
+
+        deleteButton.addEventListener("click", () => {
+            const deletedExpense = expenses.splice(index, 1)[0];
+
+            if (!saveExpenses()) {
+                expenses.splice(index, 0, deletedExpense);
+                alert("Unable to delete expense. Please try again.");
+                return;
+            }
+
+            renderExpenses();
+        });
+
+        expenseItem.appendChild(expenseDetails);
+        expenseItem.appendChild(amount);
+        expenseItem.appendChild(deleteButton);
 
         expenseList.appendChild(expenseItem);
     });
 
-    totalExpenseDisplay.textContent =
-        currencyFormatter.format(total);
+    totalExpenseDisplay.textContent = formatCurrency(total);
 }
 
 // Handle new expense submission
 expenseForm.addEventListener("submit", function(event) {
-
     event.preventDefault();
 
     const description = descriptionInput.value.trim();

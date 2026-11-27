@@ -1,4 +1,25 @@
 
+.expense-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.delete-btn {
+    width: auto;
+    flex-shrink: 0;
+    padding: 8px 14px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.delete-btn:hover {
+    background-color: #b02a37;
+}
+
 * {
     margin: 0;
     padding: 0;
